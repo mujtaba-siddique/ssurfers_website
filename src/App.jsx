@@ -12,6 +12,9 @@ import About from "./comp/About";
 import Footer from "./comp/Footer";
 import ProductDetail from "./comp/ProductDiscription";
 import Cart from "./comp/Cart";
+import ReadMore from "./comp/ReadMore";
+import LearnMoreAboutSurfing from "./comp/LearnMoreAboutSurfing";
+import LearnMoreAboutBlog from "./comp/LearnMoreAboutBlog";
 
 import "./App.css";
 
@@ -30,6 +33,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/read-more" element={<ReadMore />} />
+        <Route path="/learn-more-surfing" element={<LearnMoreAboutSurfing />} />
+        <Route path="/learn-more-blog" element={<LearnMoreAboutBlog />} />
       </Routes>
       <Footer />
     </Router>

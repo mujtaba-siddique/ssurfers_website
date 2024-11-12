@@ -87,8 +87,7 @@ function Blog() {
             <img
               src={e.image}
               alt={e.title}
-              className="w-60 h-60 object-cover transition-transform duration-500 ease-in-out hover:scale-110 hover:opacity-90 hover:shadow-xl hover:rounded-2xl rounded-md"
-            />
+              className="w-60 h-60 object-cover transition-transform duration-500 ease-in-out hover:scale-110 hover:opacity-90 hover:shadow-xl hover:rounded-2xl rounded-md"/>
             <h2 className="text-xl text-center mt-6">{e.title}</h2>
             <p className="text-center text-gray-500">{e.date}</p>
             <div className="flex justify-center mt-4">
@@ -96,7 +95,7 @@ function Blog() {
                 href={e.link}
                 className="flex items-center text-blue-500 hover:text-blue-700"
               >
-                See more <FaArrowRightLong className="ml-2" />
+                See more <FaArrowRightLong className="ml-2"/>
               </a>
             </div>
           </div>
