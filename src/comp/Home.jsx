@@ -1,5 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";  
 import Slider_1 from "../assets/slider_01.jpg";
 import Slider_2 from "../assets/slider_02.jpg";
 import Slider_3 from "../assets/slider_03.jpg";
@@ -8,24 +8,28 @@ import ReadMore from "./ReadMore";
 import Comment from "./Comment";
 
 const Slider = () => {
+    const navigate = useNavigate(); 
     const slides = [
         { 
             image: Slider_1, 
             heading: 'Special Offer: 50% Off', 
             description: 'Hurry up! The offer is valid for a limited time only.', 
-            buttonText: 'Shop Now' 
+            buttonText: 'Shop Now',
+            target: '/surfboards' 
         },
         { 
             image: Slider_2, 
             heading: 'Exclusive 50% Discount', 
             description: 'Get amazing deals on your favorite items. Don\'t miss out!', 
-            buttonText: 'Browse Products' 
+            buttonText: 'Browse Products', 
+            target: '/products' 
         },
         { 
             image: Slider_3, 
             heading: 'Seasonal Sale - 50% Off', 
             description: 'Grab the best products at half price. Shop now before it\'s too late!', 
-            buttonText: 'Shop Sale' 
+            buttonText: 'Shop Sale', 
+            target: '/products' 
         }
     ];
 
@@ -63,7 +67,10 @@ const Slider = () => {
                         <div className="text-center text-white bg-black bg-opacity-50 px-6 py-4 rounded-md max-w-md mx-auto">
                             <h1 className="text-3xl font-bold mb-4">{slide.heading}</h1>
                             <p className="text-lg mb-4">{slide.description}</p>
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all">
+                            <button
+                                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all"
+                                onClick={() => navigate(slide.target)} 
+                            >
                                 {slide.buttonText}
                             </button>
                         </div>

@@ -11,12 +11,13 @@ import Bagpack from './comp/Bagpack';
 import About from './comp/About';
 import Footer from './comp/Footer';
 import ProductDetail from './comp/ProductDiscription';
-import Cart from './comp/Cart'; 
+import Cart from './comp/Cart';
 
 import './App.css';
 
 function App() {
   return (
+    
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Info />
       <Navbar />
@@ -29,7 +30,7 @@ function App() {
         <Route path="/bagpack" element={<Bagpack />} />
         <Route path="/about" element={<About />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart />} /> 
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </Router>
