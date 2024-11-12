@@ -6,7 +6,7 @@ import { FaSquareInstagram } from "react-icons/fa6";
 import { FaPinterest } from "react-icons/fa";
 import { LuTwitter } from "react-icons/lu";
 import { IoLogoLinkedin } from "react-icons/io5";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -61,7 +61,6 @@ function Footer() {
             </span>
           </div>
 
-          
           <div className="flex flex-col items-center">
             <h6 className="text-xl font-semibold mb-2">Services</h6>
             <Link to="#" className="text-gray-400 hover:text-blue-500 mb-2">
@@ -78,13 +77,18 @@ function Footer() {
             </Link>
           </div>
 
-          
           <div className="flex flex-col items-center">
             <h6 className="text-xl font-semibold mb-2">Company</h6>
-            <Link to="/about" className="text-gray-400 hover:text-blue-500 mb-2">
+            <Link
+              to="/about"
+              className="text-gray-400 hover:text-blue-500 mb-2"
+            >
               About Us
             </Link>
-            <Link to="/contact" className="text-gray-400 hover:text-blue-500 mb-2">
+            <Link
+              to="/contact"
+              className="text-gray-400 hover:text-blue-500 mb-2"
+            >
               Contact
             </Link>
             <Link to="#" className="text-gray-400 hover:text-blue-500 mb-2">
@@ -95,7 +99,6 @@ function Footer() {
             </Link>
           </div>
 
-         
           <div className="flex flex-col items-center">
             <h6 className="text-xl font-semibold mb-2">Legal</h6>
             <Link to="#" className="text-gray-400 hover:text-blue-500 mb-2">
@@ -110,7 +113,6 @@ function Footer() {
           </div>
         </div>
 
-        
         <div className="mt-8 text-center text-gray-400">
           <p>&copy; 2024 Ssurfers Pvt Ltd. All rights reserved.</p>
         </div>

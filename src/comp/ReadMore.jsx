@@ -6,7 +6,7 @@ const ReadMore = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-20 sm:mt-36">
       <div className="sm:rounded-md order-1 sm:order-1">
-        <img src={Blog} alt="Blog" loading="lazy"/>
+        <img src={Blog} alt="Blog" loading="lazy" />
       </div>
       <div className=" md:ml-20 md:mt-24 text-center order-2 sm:order-2">
         <h2 className="  text-xl font-semibold">Learn more about surfing</h2>
@@ -19,7 +19,7 @@ const ReadMore = () => {
           Know More!
         </button>
       </div>
-      
+
       <div className=" md:ml-20 md:mt-36 text-center order-4 sm:order-3">
         <h2 className="  text-xl font-semibold">Learn more about Blog</h2>
         <p className="max-w-screen-sm font-roboto text-gray-600 mt-6 ">
@@ -32,7 +32,7 @@ const ReadMore = () => {
         </button>
       </div>
       <div className=" sm:mb-20 mb-7 order-3 sm:order-4 sm:mt-12 ">
-        <img src={Blog1} alt="Blog" loading="lazy" className="sm:rounded-md"/>
+        <img src={Blog1} alt="Blog" loading="lazy" className="sm:rounded-md" />
       </div>
     </div>
   );

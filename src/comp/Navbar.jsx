@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "../assets/logo.svg";
 import { MdMenu } from "react-icons/md";
 import { FaCartShopping } from "react-icons/fa6";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -27,7 +27,6 @@ function Navbar() {
 
   return (
     <div className="navbar bg-base-100 w-full z-50 sticky top-0 shadow-md">
-      
       <div className="navbar-start">
         <div className="dropdown dropdown-bottom md:hidden mr-2">
           <div
@@ -61,8 +60,9 @@ function Navbar() {
                 Products
               </button>
               <ul
-                className={`p-2 ${isProductDropdownVisible ? "block" : "hidden"} `}
-                
+                className={`p-2 ${
+                  isProductDropdownVisible ? "block" : "hidden"
+                } `}
               >
                 <li>
                   <Link

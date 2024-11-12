@@ -45,8 +45,8 @@ function Products() {
             <div className="mt-5">
               <Link
                 to={`/product/${index + 1}`}
-                className="px-8 py-2 bg-black text-white text-lg rounded hover:bg-gray-800 focus:outline-none transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300">
-              
+                className="px-8 py-2 bg-black text-white text-lg rounded hover:bg-gray-800 focus:outline-none transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
+              >
                 Buy
               </Link>
             </div>

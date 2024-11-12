@@ -60,14 +60,23 @@ function Blog() {
         <img
           src={Blog9}
           alt="Blog Header"
-          className="w-full sm:h-[300px] object-cover"loading="lazy"
+          className="w-full sm:h-[300px] object-cover"
+          loading="lazy"
         />
       </div>
 
       <h1 className="text-4xl text-center font-bold font-roboto mt-6">
         Surf Blog
       </h1>
-      <p className="mt-5 font-roboto text-gray-500 sm:mx-64 mx-8 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error ad minus eos modi fugit quibusdam sit quae, facilis voluptas, velit accusamus suscipit officia. Illum sunt provident quisquam libero. Natus, ipsam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam itaque consectetur, vero ratione perferendis nihil harum aliquid facere autem, quidem, labore veniam! Rerum tempora quas repellendus velit saepe quasi nobis.</p>
+      <p className="mt-5 font-roboto text-gray-500 sm:mx-64 mx-8 ">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error ad minus
+        eos modi fugit quibusdam sit quae, facilis voluptas, velit accusamus
+        suscipit officia. Illum sunt provident quisquam libero. Natus, ipsam.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+        itaque consectetur, vero ratione perferendis nihil harum aliquid facere
+        autem, quidem, labore veniam! Rerum tempora quas repellendus velit saepe
+        quasi nobis.
+      </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-16 mt-6 sm:mt-16 sm:mx-64 mx-32">
         {img.map((e) => (

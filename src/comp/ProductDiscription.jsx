@@ -1,13 +1,13 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import Product_1 from '../assets/product_surfboard_1.webp';
-import Product_2 from '../assets/product_surfboard_2.webp';
-import Product_3 from '../assets/product_surfboard_3.webp';
-import Product_4 from '../assets/product_surfboard_4.webp';
-import Product_5 from '../assets/product_surfboard_5.webp';
-import Product_6 from '../assets/product_surfboard_7.webp';
-import Product_7 from '../assets/product_surfboard_8.webp';
-import Product_8 from '../assets/product_surfboard_2.webp';
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Product_1 from "../assets/product_surfboard_1.webp";
+import Product_2 from "../assets/product_surfboard_2.webp";
+import Product_3 from "../assets/product_surfboard_3.webp";
+import Product_4 from "../assets/product_surfboard_4.webp";
+import Product_5 from "../assets/product_surfboard_5.webp";
+import Product_6 from "../assets/product_surfboard_7.webp";
+import Product_7 from "../assets/product_surfboard_8.webp";
+import Product_8 from "../assets/product_surfboard_2.webp";
 
 const products = [
   {
@@ -46,9 +46,9 @@ const products = [
 
 function ProductDetail() {
   const { productId } = useParams();
-  const productIndex = parseInt(productId, 10) - 1; 
+  const productIndex = parseInt(productId, 10) - 1;
   const product = products[productIndex];
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleBuyClick = () => {
     const productDetails = {
@@ -57,26 +57,32 @@ function ProductDetail() {
       image: product.image,
     };
 
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     cartItems.push(productDetails);
-    localStorage.setItem('cart', JSON.stringify(cartItems));
+    localStorage.setItem("cart", JSON.stringify(cartItems));
 
     alert(`Added Product ${productId} to your cart!`);
-    navigate('/cart'); 
+    navigate("/cart");
   };
 
   return (
     <div className="container mx-auto my-10">
       <div className="text-center">
-        <img src={product.image} alt={`Product ${productId}`} className="w-96 mx-auto" />
+        <img
+          src={product.image}
+          alt={`Product ${productId}`}
+          className="w-96 mx-auto"
+        />
         <h2 className="text-4xl mt-5">Product {productId}</h2>
         <p className="mt-4 text-lg">
-          This is the detailed description for Product {productId}. Here you can add more information about the product, including features, specifications, etc.
+          This is the detailed description for Product {productId}. Here you can
+          add more information about the product, including features,
+          specifications, etc.
         </p>
         <div className="mt-5 text-xl">
           <span>Price: ₹{product.price}</span>
         </div>
-        
+
         <div className="mt-5">
           <button
             onClick={handleBuyClick}

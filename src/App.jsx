@@ -1,23 +1,22 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Info from './comp/Info';
-import Navbar from './comp/Navbar';
-import Slider from './comp/Home';
-import Products from './comp/ProductsList';
-import Surfboards from './comp/Surfboards';
-import Contact from './comp/Contact';
-import Blog from './comp/Blog';
-import Bagpack from './comp/Bagpack';
-import About from './comp/About';
-import Footer from './comp/Footer';
-import ProductDetail from './comp/ProductDiscription';
-import Cart from './comp/Cart';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Info from "./comp/Info";
+import Navbar from "./comp/Navbar";
+import Slider from "./comp/Home";
+import Products from "./comp/ProductsList";
+import Surfboards from "./comp/Surfboards";
+import Contact from "./comp/Contact";
+import Blog from "./comp/Blog";
+import Bagpack from "./comp/Bagpack";
+import About from "./comp/About";
+import Footer from "./comp/Footer";
+import ProductDetail from "./comp/ProductDiscription";
+import Cart from "./comp/Cart";
 
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-    
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Info />
       <Navbar />

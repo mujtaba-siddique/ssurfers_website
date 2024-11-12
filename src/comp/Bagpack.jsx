@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import Blog9 from "../assets/blog9.jpg";
 import slider1 from "../assets/bag1.jpg";
 import slider2 from "../assets/bag2.jpg";
@@ -9,7 +9,7 @@ import Crop from "../assets/bag4.jpg";
 import cover from "../assets/cover1.webp";
 
 function Bagpack() {
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   const img = [
     {
@@ -18,7 +18,7 @@ function Bagpack() {
       title: "Backpack 1",
       date: "17 August 2024",
       link: "#",
-      price: 1000  
+      price: 1000,
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ function Bagpack() {
       title: "Slider 1",
       date: "17 August 2024",
       link: "#",
-      price: 1200
+      price: 1200,
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ function Bagpack() {
       title: "Slider 2",
       date: "17 August 2024",
       link: "#",
-      price: 1400
+      price: 1400,
     },
     {
       id: 4,
@@ -42,7 +42,7 @@ function Bagpack() {
       title: "Slider 3",
       date: "17 August 2024",
       link: "#",
-      price: 1500
+      price: 1500,
     },
     {
       id: 5,
@@ -50,7 +50,7 @@ function Bagpack() {
       title: "Slider 4",
       date: "17 August 2024",
       link: "#",
-      price: 1600
+      price: 1600,
     },
     {
       id: 6,
@@ -58,21 +58,17 @@ function Bagpack() {
       title: "Slider 5",
       date: "17 August 2024",
       link: "#",
-      price: 1700
+      price: 1700,
     },
   ];
 
   const handleAddToCart = (item) => {
-   
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-   
     cart.push(item);
 
-   
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    
     navigate("/cart");
   };
 
@@ -110,7 +106,7 @@ function Bagpack() {
             <p className="text-center text-gray-500">{e.date}</p>
             <div className="flex justify-center mt-4">
               <button
-                onClick={() => handleAddToCart(e)} 
+                onClick={() => handleAddToCart(e)}
                 className="bg-black text-white py-2 px-8 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
               >
                 Buy
