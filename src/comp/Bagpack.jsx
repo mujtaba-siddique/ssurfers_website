@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Blog9 from "../assets/blog9.jpg";
+// import Blog9 from "../assets/blog9.jpg";
 import slider1 from "../assets/bag1.jpg";
 import slider2 from "../assets/bag2.jpg";
 import blog2 from "../assets/bag3.jpg";
