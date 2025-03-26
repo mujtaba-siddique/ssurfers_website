@@ -1,202 +1,246 @@
-import React, { useState } from "react";
-import Logo from "../assets/logo.svg";
-import { MdMenu } from "react-icons/md";
-import { FaCartShopping } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { MdMenu, MdClose } from "react-icons/md";
+import { FiShoppingCart } from "react-icons/fi";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import Logo2 from "../assets/logo.svg"; // Import the same logo as in footer
 
 function Navbar() {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [isProductDropdownVisible, setIsProductDropdownVisible] =
-    useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleDropdown = () => {
-    setIsDropdownVisible(!isDropdownVisible);
+  const updateCartCount = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartCount(cart.length);
   };
 
-  const toggleProductDropdown = () => {
-    setIsProductDropdownVisible(!isProductDropdownVisible);
+  const handleNavigation = (path) => {
+    setIsLoading(true);
+    setIsMobileMenuOpen(false);
+    setTimeout(() => {
+      navigate(path);
+      setIsLoading(false);
+    }, 1000);
   };
 
-  const handleLinkClick = () => {
-    setIsDropdownVisible(false);
-  };
+  useEffect(() => {
+    updateCartCount();
+    
+    const handleStorageChange = () => updateCartCount();
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("cartUpdated", updateCartCount);
 
-  const handleProductSelect = () => {
-    setIsProductDropdownVisible(false);
-  };
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("cartUpdated", updateCartCount);
+    };
+  }, []);
 
   return (
-    <div className="navbar bg-base-100 w-full z-50 sticky top-0 shadow-md">
-      <div className="navbar-start">
-        <div className="dropdown dropdown-bottom md:hidden mr-2">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost"
-            onClick={toggleDropdown}
-          >
-            <MdMenu className="text-6xl font-bold text-black transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300 cursor-pointer" />
-          </div>
-          <ul
-            tabIndex={0}
-            className={`menu menu-sm dropdown-content bg-black text-white rounded-box mb-3 w-36 shadow-xl border-opacity-60 ${
-              isDropdownVisible ? "block" : "hidden"
-            } z-40`}
-          >
-            <li>
-              <Link
+    <>
+      {/* Loader Overlay */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+        </div>
+      )}
+
+      <nav className="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex items-center">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+              >
+                {isMobileMenuOpen ? <MdClose className="h-6 w-6" /> : <MdMenu className="h-6 w-6" />}
+              </button>
+              
+              <Link 
+                to="/" 
+                onClick={() => handleNavigation("/")}
+                className="flex items-center ml-2 md:ml-0"
+              >
+                <img src={Logo2} alt="SurfHub Logo" className="h-8 w-auto" />
+                
+              </Link>
+            </div>
+
+            <div className="hidden md:flex items-center space-x-8">
+              <NavLink
                 to="/"
-                className="hover:underline transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
-                onClick={handleLinkClick}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation("/");
+                }}
+                className={({ isActive }) => 
+                  `px-1 py-2 text-sm font-medium border-b-2 ${
+                    isActive ? "border-blue-500 text-blue-600" 
+                    : "border-transparent text-gray-700 hover:text-gray-900 hover:border-gray-300"
+                  }`
+                }
               >
                 Home
-              </Link>
-            </li>
-            <li>
-              <button
-                className="w-full text-left p-2 hover:bg-gray-700"
-                onClick={toggleProductDropdown}
-              >
-                Products
-              </button>
-              <ul
-                className={`p-2 ${
-                  isProductDropdownVisible ? "block" : "hidden"
-                } `}
-              >
-                <li>
-                  <Link
-                    to="/surfboards"
-                    className="hover:underline transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
-                    onClick={handleProductSelect}
+              </NavLink>
+              
+              <div className="relative group">
+                <button className="flex items-center px-1 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 border-b-2 border-transparent hover:border-gray-300">
+                  Products
+                  <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <NavLink 
+                    to="/surfboards" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigation("/surfboards");
+                    }}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
                     Surfboards
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/bagpack"
-                    className="hover:underline transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
-                    onClick={handleProductSelect}
-                  >
-                    Backpacks
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li className="hover:underline transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300 mt-2">
-              <Link
-                to="/blog"
-                className="hover:underline"
-                onClick={handleLinkClick}
+                  </NavLink>
+                  
+                </div>
+              </div>
+              
+              <NavLink 
+                to="/blog" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation("/blog");
+                }}
+                className={({ isActive }) => 
+                  `px-1 py-2 text-sm font-medium border-b-2 ${
+                    isActive ? "border-blue-500 text-blue-600" 
+                    : "border-transparent text-gray-700 hover:text-gray-900 hover:border-gray-300"
+                  }`
+                }
               >
                 Blog
-              </Link>
-            </li>
-            <li className="hover:underline transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300 mt-2">
-              <Link
-                to="/about"
-                className="hover:underline"
-                onClick={handleLinkClick}
+              </NavLink>
+              
+              <NavLink 
+                to="/about" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation("/about");
+                }}
+                className={({ isActive }) => 
+                  `px-1 py-2 text-sm font-medium border-b-2 ${
+                    isActive ? "border-blue-500 text-blue-600" 
+                    : "border-transparent text-gray-700 hover:text-gray-900 hover:border-gray-300"
+                  }`
+                }
               >
-                About Us
-              </Link>
-            </li>
-            <li className="hover:underline transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300 mt-2">
-              <Link
-                to="/contact"
-                className="hover:underline"
-                onClick={handleLinkClick}
+                About
+              </NavLink>
+              
+              <NavLink 
+                to="/contact" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation("/contact");
+                }}
+                className={({ isActive }) => 
+                  `px-1 py-2 text-sm font-medium border-b-2 ${
+                    isActive ? "border-blue-500 text-blue-600" 
+                    : "border-transparent text-gray-700 hover:text-gray-900 hover:border-gray-300"
+                  }`
+                }
               >
                 Contact
+              </NavLink>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <Link 
+                to="/cart" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation("/cart");
+                }}
+                className="p-2 rounded-full text-gray-700 hover:text-gray-900 hover:bg-gray-100 relative"
+              >
+                <FiShoppingCart className="h-5 w-5" />
+                {cartCount > 0 && (
+                  <span className="absolute top-0 right-0 h-4 w-4 bg-blue-500 text-white text-xs rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1">
+                    {cartCount > 9 ? "9+" : cartCount}
+                  </span>
+                )}
               </Link>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
 
-        <Link to="/" className="md:mx-[5rem]">
-          <img
-            src={Logo}
-            alt="Logo"
-            className="h-10 transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300 cursor-pointer"
-          />
-        </Link>
-      </div>
-
-      <div className="navbar-center hidden md:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li className="transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300">
-            <Link to="/">Home</Link>
-          </li>
-
-          <li className="relative">
+        {/* Mobile Menu */}
+        <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
             <button
-              className="transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
-              onClick={toggleProductDropdown}
+              onClick={() => handleNavigation("/")}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
             >
-              Products
+              Home
             </button>
-            <ul
-              className={`${
-                isProductDropdownVisible ? "block" : "hidden"
-              } p-2 absolute left-0  bg-black text-white rounded-md shadow-lg w-40 transition-all transform duration-300 ease-out mt-14`}
-            >
-              <li>
-                <Link
-                  to="/surfboards"
-                  className="transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
-                  onClick={handleProductSelect}
+            
+            <div className="px-3 py-2">
+              <button 
+                className="w-full flex justify-between items-center text-gray-700 hover:text-gray-900"
+                onClick={() => document.querySelector('.mobile-products-submenu').classList.toggle('hidden')}
+              >
+                <span className="text-base font-medium">Products</span>
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="mobile-products-submenu hidden pl-4 space-y-1 mt-2">
+                <button
+                  onClick={() => handleNavigation("/surfboards")}
+                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
                 >
                   Surfboards
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/bagpack"
-                  className="transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
-                  onClick={handleProductSelect}
+                </button>
+                <button
+                  onClick={() => handleNavigation("/wetsuits")}
+                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
                 >
-                  Backpacks
-                </Link>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <Link
-              to="/blog"
-              className="transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
+                  Wetsuits
+                </button>
+                <button
+                  onClick={() => handleNavigation("/accessories")}
+                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                >
+                  Accessories
+                </button>
+              </div>
+            </div>
+            
+            <button
+              onClick={() => handleNavigation("/blog")}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
             >
               Blog
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/about"
-              className="transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
+            </button>
+            
+            <button
+              onClick={() => handleNavigation("/about")}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
             >
-              About Us
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/contact"
-              className="transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300"
+              About
+            </button>
+            
+            <button
+              onClick={() => handleNavigation("/contact")}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
             >
               Contact
-            </Link>
-          </li>
-        </ul>
-      </div>
-
-      <span className="navbar-end">
-        <Link to="/cart">
-          <FaCartShopping className="text-2xl md:opacity-50 md:hover:opacity-100 cursor-pointer mr-8 md:mr-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110 duration-300" />
-        </Link>
-      </span>
-    </div>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 }
 

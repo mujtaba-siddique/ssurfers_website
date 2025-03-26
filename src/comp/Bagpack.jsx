@@ -64,16 +64,14 @@ function Bagpack() {
 
   const handleAddToCart = (item) => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     cart.push(item);
-
     localStorage.setItem("cart", JSON.stringify(cart));
-
     navigate("/cart");
   };
 
   return (
-    <>
+    // 👇 Wrapper div with white background
+    <div className="bg-white pb-16">
       <div>
         <img
           src={cover}
@@ -90,32 +88,37 @@ function Bagpack() {
         suscipit officia. Illum sunt provident quisquam libero. Natus, ipsam.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-16 mt-6 sm:mt-16 sm:mx-64 mx-32">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-12 mt-6 sm:mt-16 sm:mx-16 mx-8">
         {img.map((e) => (
           <div
             key={e.id}
-            className="p-6 bg-white rounded-lg shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-xl cursor-pointer"
+            className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-xl cursor-pointer"
           >
             <img
               src={e.image}
               alt={e.title}
-              className="w-60 h-60 object-cover transition-transform duration-500 ease-in-out hover:scale-110 hover:opacity-90 hover:shadow-xl hover:rounded-2xl rounded-md"
+              className="w-full h-72 object-cover transition-transform duration-500 ease-in-out hover:scale-110 hover:opacity-90 hover:shadow-xl"
               loading="lazy"
             />
-            <h2 className="text-xl text-center mt-6">{e.title}</h2>
-            <p className="text-center text-gray-500">{e.date}</p>
-            <div className="flex justify-center mt-4">
-              <button
-                onClick={() => handleAddToCart(e)}
-                className="bg-black text-white py-2 px-8 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
-              >
-                Buy
-              </button>
+            <div className="p-4">
+              <h2 className="text-xl font-semibold text-center">{e.title}</h2>
+              <p className="text-center text-gray-500">{e.date}</p>
+              <div className="flex justify-between items-center mt-4">
+                <span className="text-xl font-semibold text-gray-800">
+                  ₹{e.price}
+                </span>
+                <button
+                  onClick={() => handleAddToCart(e)}
+                  className="bg-black text-white py-2 px-6 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+                >
+                  Buy
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -55,7 +55,8 @@ function Blog() {
   ];
 
   return (
-    <>
+    // 👇 Added white background wrapper
+    <div className="bg-white pb-16">
       <div>
         <img
           src={Blog9}
@@ -68,7 +69,7 @@ function Blog() {
       <h1 className="text-4xl text-center font-bold font-roboto mt-6">
         Surf Blog
       </h1>
-      <p className="mt-5 font-roboto text-gray-500 sm:mx-64 mx-8 ">
+      <p className="mt-5 font-roboto text-gray-500 sm:mx-64 mx-8">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Error ad minus
         eos modi fugit quibusdam sit quae, facilis voluptas, velit accusamus
         suscipit officia. Illum sunt provident quisquam libero. Natus, ipsam.
@@ -78,7 +79,7 @@ function Blog() {
         quasi nobis.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-16 mt-6 sm:mt-16 sm:mx-64 mx-32">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-16 mt-6 sm:mt-16 sm:mx-64 mx-8">
         {img.map((e) => (
           <div
             key={e.id}
@@ -87,7 +88,8 @@ function Blog() {
             <img
               src={e.image}
               alt={e.title}
-              className="w-60 h-60 object-cover transition-transform duration-500 ease-in-out hover:scale-110 hover:opacity-90 hover:shadow-xl hover:rounded-2xl rounded-md"/>
+              className="w-60 h-60 object-cover transition-transform duration-500 ease-in-out hover:scale-110 hover:opacity-90 hover:shadow-xl hover:rounded-2xl rounded-md mx-auto"
+            />
             <h2 className="text-xl text-center mt-6">{e.title}</h2>
             <p className="text-center text-gray-500">{e.date}</p>
             <div className="flex justify-center mt-4">
@@ -95,13 +97,13 @@ function Blog() {
                 href={e.link}
                 className="flex items-center text-blue-500 hover:text-blue-700"
               >
-                See more <FaArrowRightLong className="ml-2"/>
+                See more <FaArrowRightLong className="ml-2" />
               </a>
             </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

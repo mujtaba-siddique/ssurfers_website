@@ -8,57 +8,73 @@ import { IoLogoLinkedin } from "react-icons/io5";
 
 function Info() {
   return (
-    <div className="bg-black text-white h-[50px] text-[13px] flex items-center justify-between px-4 w-fulls">
-      <div className="flex space-x-4 md:mx-[5rem]">
-        <span className="font-roboto hover:underline cursor-pointer">
-          <a href="tel:+917678990987">7678990987</a>
-        </span>
-        <span className="font-roboto hover:underline cursor-pointer">
-          <a href="mailto:contact@email.com">contact@email.com</a>
-        </span>
-      </div>
+    <div className="bg-white border-b border-gray-200 py-3 px-4 sm:px-6 lg:px-8 w-full">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between">
+        {/* Contact Information */}
+        <div className="flex space-x-4 mb-2 sm:mb-0">
+          <a 
+            href="tel:+917678990987" 
+            className="text-gray-600 hover:text-gray-900 text-sm transition-colors flex items-center"
+          >
+            <span className="hidden sm:inline mr-1">📞</span>
+            7678990987
+          </a>
+          <span className="text-gray-300">|</span>
+          <a 
+            href="mailto:contact@email.com" 
+            className="text-gray-600 hover:text-gray-900 text-sm transition-colors flex items-center"
+          >
+            <span className="hidden sm:inline mr-1">✉️</span>
+            contact@email.com
+          </a>
+        </div>
 
-      <span className="flex space-x-4 md:mx-[5rem] sm:text-xl">
-        <a
-          href="https://www.facebook.com/"
-          className="cursor-pointer md:opacity-30 hover:opacity-100 transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110  duration-200 ..."
-        >
-          <FiFacebook />
-        </a>
-        <a
-          href="https://www.youtube.com/"
-          className="cursor-pointer md:opacity-30 hover:opacity-100 transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110  duration-200 ..."
-        >
-          {" "}
-          <TfiYoutube />{" "}
-        </a>
-        <a
-          href="https://www.instagram.com/"
-          className="cursor-pointer md:opacity-30 hover:opacity-100 transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110  duration-200 ..."
-        >
-          {" "}
-          <FaSquareInstagram className="" />
-        </a>
-        <a
-          href="https://in.pinterest.com/"
-          className="cursor-pointer md:opacity-30 hover:opacity-100 transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110  duration-200 ..."
-        >
-          {" "}
-          <FaPinterest />
-        </a>
-        <a
-          href="https://x.com/"
-          className="cursor-pointer md:opacity-30 hover:opacity-100 transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110  duration-200 ..."
-        >
-          <LuTwitter />
-        </a>
-        <a
-          href="https://in.linkedin.com/"
-          className="cursor-pointer md:opacity-30 hover:opacity-100 transition ease-in-out delay-150 hover:-translate-y-1 hover:font-bold hover:scale-110  duration-200 ..."
-        >
-          <IoLogoLinkedin />
-        </a>
-      </span>
+        {/* Social Media Links */}
+        <div className="flex space-x-4">
+          <a
+            href="https://www.facebook.com/"
+            className="text-gray-600 hover:text-blue-600 transition-colors"
+            aria-label="Facebook"
+          >
+            <FiFacebook className="h-5 w-5" />
+          </a>
+          <a
+            href="https://www.youtube.com/"
+            className="text-gray-600 hover:text-red-600 transition-colors"
+            aria-label="YouTube"
+          >
+            <TfiYoutube className="h-5 w-5" />
+          </a>
+          <a
+            href="https://www.instagram.com/"
+            className="text-gray-600 hover:text-pink-600 transition-colors"
+            aria-label="Instagram"
+          >
+            <FaSquareInstagram className="h-5 w-5" />
+          </a>
+          <a
+            href="https://in.pinterest.com/"
+            className="text-gray-600 hover:text-red-700 transition-colors"
+            aria-label="Pinterest"
+          >
+            <FaPinterest className="h-5 w-5" />
+          </a>
+          <a
+            href="https://x.com/"
+            className="text-gray-600 hover:text-blue-400 transition-colors"
+            aria-label="Twitter"
+          >
+            <LuTwitter className="h-5 w-5" />
+          </a>
+          <a
+            href="https://in.linkedin.com/"
+            className="text-gray-600 hover:text-blue-700 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <IoLogoLinkedin className="h-5 w-5" />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
