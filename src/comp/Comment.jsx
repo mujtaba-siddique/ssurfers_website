@@ -1,6 +1,6 @@
 import React from "react";
-import Customer1 from "../assets/Customer1.webp";
-import Customer2 from "../assets/Customer2.webp";
+import Customer1 from "../assets/customer1.webp";
+import Customer2 from "../assets/customer2.webp";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { FiStar } from "react-icons/fi";
 
